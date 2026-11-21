@@ -15,10 +15,11 @@ This repository holds everything used to produce the technical article: the arti
 article/
   ROOP_technical_article_EN.pdf   final article (English)
   ROOP_technical_article_EN.md    source of the English article
-  ROOP_artigo_tecnico_PT.md       Portuguese version (markdown export, figures as placeholders)
+  ROOP_artigo_tecnico_PT.pdf      final article (Portuguese)
+  ROOP_artigo_tecnico_PT.md       source of the Portuguese article
   style.css                       stylesheet used to render the PDF
   figures_en/                     figures with English labels (used in the PDF)
-  figures_pt/                     figures with Portuguese labels, plus early exploratory figures (fig1–fig4)
+  figures_pt/                     figures with Portuguese labels (used in the PT PDF), plus early exploratory figures (fig1–fig4)
 simulations/
   *.py                            simulation, analysis and figure scripts
   orex_bennu_vectors.csv          real OSIRIS-REx state vectors relative to Bennu (JPL Horizons)
@@ -62,6 +63,7 @@ Rebuilding the PDF (pandoc + headless Chrome):
 cd article
 pandoc ROOP_technical_article_EN.md -s --mathml --css style.css -o article.html
 google-chrome --headless --no-pdf-header-footer --print-to-pdf=ROOP_technical_article_EN.pdf article.html
+# Portuguese: same commands with ROOP_artigo_tecnico_PT.md -> ROOP_artigo_tecnico_PT.pdf
 ```
 
 ## Data sources

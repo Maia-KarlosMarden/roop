@@ -1,12 +1,15 @@
-# ROOP: a Invariância Relacional G′r = Gp aplicada à autonomia orbital e à estimação de massa de asteroides
-
-Nov 21, 2026 · @Karlos
+---
+title: "ROOP — Relational Orbital Optimization Protocol: a Invariância Relacional G′r = Gp aplicada à autonomia orbital e à estimação de massa de asteroides"
+author: "Karlos Marden Maia"
+date: "21 de novembro de 2026"
+lang: pt-BR
+---
 
 *Código, dados e figuras: [github.com/Maia-KarlosMarden/roop](https://github.com/Maia-KarlosMarden/roop), sob a licença Apache 2.0.*
 
 ## Resumo
 
-A Invariância Relacional G′r = Gp, com G′ = 3ω²/4πρ e ρ = 3M/4πr³ (Maia, 2026, seção 2.2), é uma reformulação exata da mecânica kepleriana. Ela está para Kepler–Newton assim como a mecânica lagrangiana está para Newton: não prevê nada diferente, mas encurta certas contas. Este artigo deriva dela o ROOP, um protocolo com duas ferramentas fechadas e embarcáveis, e as testa contra práticas de mercado e contra dados reais de voo.
+A Invariância Relacional G′r = Gp, com G′ = 3ω²/4πρ e ρ = 3M/4πr³ (Maia, 2026, seção 2.2), é uma reformulação exata da mecânica kepleriana. Ela está para Kepler–Newton assim como a mecânica lagrangiana está para Newton: não prevê nada diferente, mas encurta certas contas. Este artigo deriva dela o ROOP (Relational Orbital Optimization Protocol), um protocolo com duas ferramentas fechadas e embarcáveis, e as testa contra práticas de mercado e contra dados reais de voo.
 
 **Correção orbital autônoma.** O comando relacional ΔF diz se, quanto e onde disparar. Em LEO a 350 km, com J2, J3, arrasto com atividade solar variável e ruído de GNSS, ele gasta 21,0 m/s/ano, o mínimo físico imposto pelo arrasto. Mantém a altitude média em 41 m RMS e elimina 49 a 116 ciclos anuais de planejamento em solo. Contra o solo semanal, economiza 21–27 % de Δv (1,3–1,8 kg/ano de hidrazína em 500 kg); contra o solo a cada 3 dias, \~1 %. Empata com o controle autônomo convencional usando \~25 % menos operações por amostra.
 
@@ -22,7 +25,7 @@ A reformulação é útil no sentido lagrangiano: não muda a física nem supera
 Este artigo reivindica as contribuições abaixo, cada uma com a evidência que a sustenta.
 
 1. **Leitura operacional da Invariância Relacional.** A relação G′r = Gp separa o tamanho da órbita (⟨G′r⟩ contra Gp) da forma (oscilação de K = G′/G ao longo da órbita), e cada parte se torna uma ferramenta de engenharia (seção 3).
-2. **ΔF*, um comando de empuxo relacional completo.*\* Uma única grandeza entrega o critério de disparo, o tamanho do pulso em m/s e o ponto de disparo u\* que corrige a excentricidade sem Δv extra. Atinge o mínimo físico de Δv em simulação e empata com o estado da arte autônomo, com \~25 % menos operações por amostra (seção 4).
+2. **ΔF, um comando de empuxo relacional completo.** Uma única grandeza entrega o critério de disparo, o tamanho do pulso em m/s e o ponto de disparo u\* que corrige a excentricidade sem Δv extra. Atinge o mínimo físico de Δv em simulação e empata com o estado da arte autônomo, com \~25 % menos operações por amostra (seção 4).
 3. **Estimador relacional de massa M = ⟨h⟩²/(G·p\_geom).** Combina um ajuste puramente geométrico de p com h cinemático. É linear e fechado, vale para órbitas e sobrevoos hiperbólicos, iguala a OD em lote até \~1 % com 300 a 2 000× menos processamento e foi validado na trajetória real da OSIRIS-REx (seções 3.2, 5.2 e 5.6).
 4. **Correções fechadas para perturbações reais.** O fator μ\_ef = μ\[1 + 1,5·J2·(R/r)²(1 − 3z²/r²)\] remove o viés do achatamento (0,001 % na órbita A de Psyche). O fator ⟨(r/ρ)³⟩ remove o deslocamento da órbita causado pela pressão de radiação solar, medido nos próprios dados (78 m na Orbital A de Bennu) (seções 5.4 e 5.6).
 5. **Estimação conjunta de GM e J2 a bordo, inclusive durante espirais de propulsão elétrica.** μ\_ef é linear em μ e μ·J2, então estimativas em altitudes diferentes formam uma regressão linear. Na espiral A→B1 de Psyche, o GM fica abaixo de 0,03 % e o J2 em \~10 % a partir do 4º dia (seção 5.5). Integrada ao ΔF pela mesma grandeza (ΔF\_geom para a massa, dentro de uma faixa admissível ajustável, sem informação prévia), a malha leva a nave da Orbit A à B1 de Psyche 6 a 7 dias antes de esperar a massa do solo, com o mesmo Δv, e repete o ganho de \~7 dias nas transferências B1→D (com descida retrógrada, necessária para cruzar as ressonâncias de rotação) e D→C (seções 3.3, 5.7 e 5.8).
@@ -51,9 +54,7 @@ A formulação desta seção é a de Maia (2026): a definição G′ ≡ ω²r³
 
 A densidade orbital é a massa do corpo central distribuída sobre a esfera de raio igual ao raio orbital instantâneo:
 
-```latex
-\rho = \frac{M}{\tfrac{4}{3}\pi r^{3}} = \frac{3M}{4\pi r^{3}}, \qquad r = R_E + h
-```
+$$\rho = \frac{M}{\tfrac{4}{3}\pi r^{3}} = \frac{3M}{4\pi r^{3}}, \qquad r = R_E + h$$
 
 ρ é uma parametrização gravitacional, não a densidade atmosférica que governa o arrasto. Ela decai como r⁻³: ≈ 4,2 × 10³ kg/m³ a 600 km de altitude e ≈ 19 kg/m³ em GEO.
 
@@ -69,15 +70,11 @@ A densidade orbital é a massa do corpo central distribuída sobre a esfera de r
 
 O acoplamento local é definido como G′ ≡ ω²r³/M (Maia, 2026, eq. 2). Com a densidade orbital ρ, escreve-se de forma equivalente:
 
-```latex
-G' = \frac{3\,\omega^{2}}{4\pi\rho}
-```
+$$G' = \frac{3\,\omega^{2}}{4\pi\rho}$$
 
 Substituindo ρ, volta-se à definição, que é a terceira lei escrita com o raio instantâneo:
 
-```latex
-G' = \frac{\omega^{2} r^{3}}{M} \quad\Longleftrightarrow\quad \omega^{2} = \frac{G' M}{r^{3}}
-```
+$$G' = \frac{\omega^{2} r^{3}}{M} \quad\Longleftrightarrow\quad \omega^{2} = \frac{G' M}{r^{3}}$$
 
 Na forma de ρ, G′ é lido como razão entre a dinâmica angular local e a massa contida na esfera orbital. Na forma kepleriana, é o valor que G teria se a órbita fosse circular com o raio e a velocidade angular daquele instante. As duas formas são algebricamente idênticas; a de ρ é a leitura relacional, a de ω²r³/M é a que se implementa.
 
@@ -85,9 +82,7 @@ Na forma de ρ, G′ é lido como razão entre a dinâmica angular local e a mas
 
 Com ω = h/r² (segunda lei de Kepler) e h² = GMp, onde p = a(1 − e²) é o semi-latus rectum:
 
-```latex
-G' r = \frac{\omega^{2} r^{4}}{M} = \frac{h^{2}}{M} = G\,a(1-e^{2}) = G\,p
-```
+$$G' r = \frac{\omega^{2} r^{4}}{M} = \frac{h^{2}}{M} = G\,a(1-e^{2}) = G\,p$$
 
 O lado esquerdo é local (depende de r e ω no instante); o direito é global (constantes da cônica). Dimensionalmente, G′r tem unidade m⁴ kg⁻¹ s⁻², isto é, momento angular específico ao quadrado por unidade de massa central.
 
@@ -107,15 +102,11 @@ A invariância separa naturalmente o **tamanho** da órbita (quanto G′r difere
 
 A cada amostra de navegação, formam-se duas razões adimensionais:
 
-```latex
-Q_i = \frac{G'_i\, r_i}{G\, p_{ref}} = \frac{p_i}{p_{ref}}, \qquad K_i = \frac{G'_i}{G} = \frac{p}{r_i} = 1 + e\cos(u_i-\omega)
-```
+$$Q_i = \frac{G'_i\, r_i}{G\, p_{ref}} = \frac{p_i}{p_{ref}}, \qquad K_i = \frac{G'_i}{G} = \frac{p}{r_i} = 1 + e\cos(u_i-\omega)$$
 
 Sobre uma janela deslizante de uma órbita, a média de Q dá o desvio de tamanho e um ajuste linear de K contra o argumento de latitude u dá o vetor excentricidade:
 
-```latex
-\Delta F = -\frac{\bar v}{2}\big(\langle Q\rangle_T - 1\big)\ \ [\mathrm{m/s}], \qquad K_i \approx A + B\cos u_i + C\sin u_i \Rightarrow \vec e = (B/A,\, C/A)
-```
+$$\Delta F = -\frac{\bar v}{2}\big(\langle Q\rangle_T - 1\big)\ \ [\mathrm{m/s}], \qquad K_i \approx A + B\cos u_i + C\sin u_i \Rightarrow \vec e = (B/A,\, C/A)$$
 
 A regra de acionamento: disparar quando ΔF > Δv\_min, com um pulso transversal de tamanho ΔF, centrado no argumento de latitude u\* = atan2(Δe\_y, Δe\_x) que também leva e⃗ ao alvo. Quando a correção de excentricidade excede o que o pulso de arrasto entrega, adiciona-se um par de pulsos opostos separados de meia órbita. A média de uma órbita remove a oscilação de curto período do J2 (±6 km em p a 350 km) e o ruído de GNSS.
 
@@ -125,9 +116,7 @@ O cálculo não passa por elementos keplerianos: usa |r × v|, |r| e u, três so
 
 Lida ao contrário, a invariância dá a massa central:
 
-```latex
-M = \frac{\langle h \rangle^{2}}{G\, p_{geom}}, \qquad \frac{1}{r_i} \approx A + B\cos\theta_i + C\sin\theta_i \Rightarrow p_{geom} = 1/A
-```
+$$M = \frac{\langle h \rangle^{2}}{G\, p_{geom}}, \qquad \frac{1}{r_i} \approx A + B\cos\theta_i + C\sin\theta_i \Rightarrow p_{geom} = 1/A$$
 
 p\_geom vem de um ajuste puramente geométrico das posições no plano orbital, que não usa μ nem tempo; ⟨h⟩ vem da cinemática. A conta é linear, fechada e vale para órbitas elípticas e para sobrevoos hiperbólicos. Em corpos pequenos, uma aceleração de pressão de radiação solar (SRP) conhecida f é removida em primeira ordem antes do ajuste: r → r − f·Δt²/2 e v → v − f·Δt.
 
@@ -135,9 +124,7 @@ p\_geom vem de um ajuste puramente geométrico das posições no plano orbital, 
 
 O estimador de massa e o comando de empuxo são duas leituras do mesmo desvio relacional. Como G′ = ω²r³/M exige uma massa, o protocolo trabalha com a massa estimada M̂. Comparar o lado cinemático com dois lados diferentes dá dois sinais:
 
-```latex
-\Delta F_{geom} = G'r - G\,p_{geom} = h^{2}\left(\frac{1}{\hat M} - \frac{1}{M}\right), \qquad \Delta F = -\frac{\bar v}{2}\left(\frac{\langle G'r\rangle}{G\,p_{ref}} - 1\right)
-```
+$$\Delta F_{geom} = G'r - G\,p_{geom} = h^{2}\left(\frac{1}{\hat M} - \frac{1}{M}\right), \qquad \Delta F = -\frac{\bar v}{2}\left(\frac{\langle G'r\rangle}{G\,p_{ref}} - 1\right)$$
 
 **ΔF\_geom** (cinemática contra geometria) é exatamente o erro de massa: zera se e somente se M̂ = M. O ROOP corrige M̂ até ΔF\_geom → 0 dentro de uma **faixa admissível ajustável**:
 
@@ -182,7 +169,7 @@ Cinco estratégias, todas com o mesmo propulsor, as mesmas forças e o mesmo ru�
 
 *Média ± desvio entre 3 sementes de atividade solar e ruído. O arrasto em regime foi de 21,0 m/s/ano em todos os casos.*
 
-&#91;image: Δv em regime, erro de altitude e ciclos de solo por estratégia\]
+![](figures_pt/fig5_market.png)
 
 *Figura 1. Δv anual em regime (com o arrasto como mínimo físico), erro de altitude média e ciclos de solo por ano. Os dois autônomos coincidem; o solo só se aproxima do mínimo com cadência de 3 dias e 116 ciclos por ano.*
 
@@ -228,7 +215,7 @@ GM = 4,89 m³/s²; SRP de 1 × 10⁻⁷ m/s² sobre a nave (comparável à gravi
 | Sobrevoo a 7,25 km | 24 h | 0,99 % | 1,00 % | falha |
 | Sobrevoo a 7,25 km | 48 h | 0,31 % (viés −0,46 %) | 0,32 % | falha |
 
-&#91;image: Erro da massa contra duração do arco, órbita e sobrevoo\]
+![](figures_pt/fig6_mass.png)
 
 *Figura 2. Erro da massa (1σ) contra a duração do arco de dados. As curvas do estimador relacional com SRP compensada e da OD em lote se sobrepõem até \~1 %; sem compensação, o relacional estaciona em \~5 % em órbita.*
 
@@ -241,9 +228,7 @@ GM = 4,89 m³/s²; SRP de 1 × 10⁻⁷ m/s² sobre a nave (comparável à gravi
 
 Como a precisão é a mesma, o arco de dados necessário é o mesmo. O ganho é tirar o solo do caminho crítico: a nave estima a massa a bordo assim que o arco termina e pode seguir para a próxima fase. Modelo:
 
-```latex
-D = N_{dec}\cdot L, \qquad \Delta R = D\cdot P\cdot V
-```
+$$D = N_{dec}\cdot L, \qquad \Delta R = D\cdot P\cdot V$$
 
 com N\_dec decisões dependentes da massa (inserção, rebaixamentos de órbita, aproximação para ancoragem; 3 a 5), L a latência de cada ciclo de solo (1 dia na OSIRIS-REx, até 3 dias com acesso compartilhado a antenas), P a produção diária e V o valor por kg. Isso dá **D = 3 a 15 dias**. Com a fase de mineração de 100 dias adotada por Hein et al., são 3 a 15 % a mais de operação, desde que a janela de partida seja fixa e os dias poupados virem dias de mineração.
 
@@ -302,9 +287,7 @@ Com parâmetros publicados e o campo gravitacional de grau 2 girando com o corpo
 - **O achatamento domina em Psyche.** Com C20 = −0,103, o estimador relacional e a OD de massa pontual medem um μ efetivo, e o viés cresce de −0,13 % na órbita A para −2,2 % na D.
 - **A correção é fechada.** Para órbita quase circular com inclinação i em relação ao eixo de rotação:
 
-```latex
-\mu_{ef} = \mu\left[1 + \tfrac{3}{2}J_2\left(\tfrac{R}{r}\right)^{2}\left(1 - \tfrac{3}{2}\sin^{2} i\right)\right], \qquad J_2 = -C_{20}
-```
+$$\mu_{ef} = \mu\left[1 + \tfrac{3}{2}J_2\left(\tfrac{R}{r}\right)^{2}\left(1 - \tfrac{3}{2}\sin^{2} i\right)\right], \qquad J_2 = -C_{20}$$
 
 Dividir a estimativa relacional por esse fator, com J2 do modelo de forma, leva o erro a 0,001 % na órbita A e 0,007 % na B. Com J2 errado em 20 %, o erro fica em 0,03 % e 0,11 %. Nas órbitas C e D sobra uma dispersão de 0,2–0,8 % vinda do C22 em rotação, que a correção não cobre.
 
@@ -312,7 +295,7 @@ Dividir a estimativa relacional por esse fator, com J2 do modelo de forma, leva 
 - **Custo.** O estimador relacional levou 0,3 ms por estimativa; a OD com C20 e C22 livres, 100 a 600 ms por estimativa na mesma máquina.
 - **Contexto.** A massa de Psyche já é conhecida da Terra a \~1 % por astrometria (GM = 1,601 ± 0,017 km³/s²), e o modelo de forma com densidade uniforme sugere \~14 % a mais. A missão pretende chegar a GM melhor que 0,001 km³/s² com rastreio radiométrico. O estimador relacional com correção J2 já entrega essa ordem de precisão (0,003 %, ou \~5 × 10⁻⁵ km³/s²) a bordo, na primeira órbita.
 
-&#91;image: Erro da massa em Bennu por arco e em Psyche por órbita\]
+![](figures_pt/fig7_bodies.png)
 
 *Figura 3. Esquerda: Bennu, órbita a 1,75 km; o relacional acompanha a OD até meia órbita. Direita: Psyche, órbita completa em cada fase da missão; o viés do achatamento cresce ao descer e a correção J2 fechada o remove nas órbitas A e B.*
 
@@ -344,7 +327,7 @@ O GM fica abaixo de 0,03 % desde o primeiro dia, e o J2 se estabiliza em \~10 % 
 
 *Órbitas extras pela taxa da Orbit D (684 órbitas em 100 dias). A incerteza de contagem do espectrômetro cai com 1/√T.*
 
-&#91;image: Linha do tempo da Psyche: plano oficial e três cenários com dias realocados para a Orbit D\]
+![](figures_pt/fig8_psyche_time.png)
 
 *Figura 4. Fases da Psyche no plano oficial e nos três cenários; em verde escuro, os dias realocados para a Orbit D.*
 
@@ -379,7 +362,7 @@ O próprio ajuste mostrou que a Orbital A é uma órbita de terminador: a normal
 | Todos os 49 pontos (108 h, com a lacuna) | 1 | 4,879 m³/s² (−0,28 %) | 4,898 m³/s² (+0,12 %) |
 | 3ª lei de Kepler, 4π²a³/T² | 1 órbita (61 h) | 4,875 m³/s² (−0,36 %) | — |
 
-&#91;image: GM de Bennu estimado em cada janela dos dados reais da OSIRIS-REx contra a referência\]
+![](figures_pt/fig9_orex_real.png)
 
 *Figura 5. GM de Bennu estimado em cada janela da trajetória real da OSIRIS-REx (Orbital A, 3–7/01/2019). Faixa cinza: referência 4,892 ± 0,006 m³/s². O requisito da missão antes da inserção na Orbital A era 2 % (±0,10 m³/s²), fora da escala.*
 
@@ -408,7 +391,7 @@ Com as duas frentes em malha fechada, a nave desce da Orbit A para a B1 sem nenh
 | Espera a massa do solo (7 dias) | dia 24,2–25,2 | 17,8–18,9 m/s | +3,3 a +3,5 km | 0,1 % |
 | **ROOP integrado, sem prévia** | **dia 18,1–18,2** | **17,9–18,0 m/s** | **+2,5 a +3,0 km** | **+0,10 a +0,17 %** |
 
-&#91;image: Faixa admissível de massa se fechando no primeiro dia e descida A→B1 das três estratégias\]
+![](figures_pt/fig10_psyche_roop.png)
 
 *Figura 6. Esquerda: GM estimado e faixa admissível do ROOP sem massa prévia; a faixa de densidade 1–8 g/cm³ se fecha em ±0,2 % no primeiro dia. Direita: raio médio de uma órbita na descida A→B1 (semente 0).*
 
@@ -447,7 +430,7 @@ Repetida nas duas transferências seguintes da Psyche, a malha integrada chega �
 | D → C | ROOP, J2 fixo | 4,0–4,2 | 21–23 m/s | −0,5 a +0,4 km | −0,2 a −0,3 % | 20 % |
 | D → C | **ROOP integrado** | **4,0–4,2** | **21–22 m/s** | **−0,2 a +0,9 km** | **−0,1 a −0,2 %** | **+10 a +11 %** |
 
-&#91;image: Raio médio nas transferências B1→D e D→C para as três estratégias\]
+![](figures_pt/fig11_psyche_legs.png)
 
 *Figura 7. Raio médio de uma órbita nas transferências B1→D (descida retrógrada) e D→C, semente 0. As duas variantes do ROOP partem imediatamente e se sobrepõem; a estratégia de solo parte após 7 dias.*
 
@@ -464,7 +447,7 @@ Os testes negativos delimitam o uso correto da invariância; todos foram reprodu
 
 | Uso testado | Resultado | Lição |
 | --- | --- | --- |
-| ΔF = G′r − Gp com p tirado de elementos osculadores do mesmo estado | ΔF ≡ 0 para qualquer estado ( | ΔF/Gp |
+| ΔF = G′r − Gp com p tirado de elementos osculadores do mesmo estado | ΔF ≡ 0 para qualquer estado (\|ΔF/Gp\| no nível do arredondamento) | A invariância é uma identidade; o p de referência deve ser independente do estado medido |
 | ΔF avaliado a cada instante contra p de referência | Gasta \~4× o Δv do arrasto e eleva a órbita média em 6 km | O J2 faz p oscilar ±6 km a cada meia órbita; só a média de uma órbita é sinal de erro |
 | Limiar fixo em unidades de G′r, abaixo do ruído | Dispara por ruído de GNSS (88 m em p) | O limiar deve ser expresso em m/s de Δv e ficar acima do ruído filtrado |
 | Estimador de massa por média temporal de ω²r³/G | Viés de −e² com amostragem uniforme no tempo | A média temporal de K = 1 + e cos θ vale 1 − e²; o ajuste geométrico de p elimina o viés |

@@ -4,6 +4,7 @@ plt.rcParams.update({'font.size':9.5,'axes.spines.top':False,'axes.spines.right'
   'axes.edgecolor':'#c3c2b7','figure.facecolor':'#fcfcfb','axes.facecolor':'#fcfcfb'})
 E=json.load(open('econ_obj1.json'))
 order=['Solo semanal, ingênuo','Solo semanal, inteligente','Solo a cada 3 dias, inteligente','Autônomo convencional','Autônomo ΔF* (relacional)']
+LBL=['Solo semanal, ingênuo','Solo semanal, inteligente','Solo a cada 3 dias, inteligente','Autônomo convencional','Autônomo ΔF (relacional)']
 col=['#c3c2b7','#c3c2b7','#c3c2b7','#2a78d6','#1baf7a']
 fig,ax=plt.subplots(1,3,figsize=(10,3.6),sharey=True)
 y=range(len(order))[::-1]
@@ -11,7 +12,7 @@ vals=[E[k]['dv_yr'] for k in order]; sd=[E[k]['dv_sd'] for k in order]
 ax[0].barh(list(y),vals,xerr=sd,color=col,height=0.6,ecolor='#5f5e5a',capsize=3)
 ax[0].axvline(E['Autônomo convencional']['drag_yr'],color='#e34948',lw=1.2,ls='--')
 ax[0].text(E['Autônomo convencional']['drag_yr']+0.4,4.42,'mínimo físico (arrasto)',fontsize=8,color='#e34948',va='bottom'); ax[0].set_ylim(-0.5,4.85)
-ax[0].set_xlabel('Δv em regime (m/s por ano)'); ax[0].set_yticks(list(y)); ax[0].set_yticklabels(order)
+ax[0].set_xlabel('Δv em regime (m/s por ano)'); ax[0].set_yticks(list(y)); ax[0].set_yticklabels(LBL)
 for i,v in zip(y,vals): ax[0].text(1,i,f'{v:.1f}',va='center',fontsize=8,color='#1f1f1e')
 a=[E[k]['a_rms'] for k in order]
 ax[1].barh(list(y),a,color=col,height=0.6); ax[1].set_xlabel('erro de altitude média, RMS (m)')
