@@ -2,6 +2,8 @@
 
 Nov 21, 2026 · @Karlos
 
+*Código, dados e figuras: [github.com/Maia-KarlosMarden/roop](https://github.com/Maia-KarlosMarden/roop), sob a licença Apache 2.0.*
+
 ## Resumo
 
 A Invariância Relacional G′r = Gp, com G′ = 3ω²/4πρ e ρ = 3M/4πr³ (Maia, 2026, seção 2.2), é uma reformulação exata da mecânica kepleriana. Ela está para Kepler–Newton assim como a mecânica lagrangiana está para Newton: não prevê nada diferente, mas encurta certas contas. Este artigo deriva dela o ROOP, um protocolo com duas ferramentas fechadas e embarcáveis, e as testa contra práticas de mercado e contra dados reais de voo.
@@ -553,6 +555,8 @@ A Invariância Relacional da seção 2.2 de Maia (2026) passa nos três critéri
 - Goldstein, H.; Poole, C.; Safko, J. *Classical Mechanics*, 3ª ed. Addison-Wesley, 2002.
 
 *Código e dados (Python, sementes fixas)*
+
+Todo o código, os dados de entrada, os resultados brutos, os logs e os scripts das figuras estão no repositório [github.com/Maia-KarlosMarden/roop](https://github.com/Maia-KarlosMarden/roop) (Apache License 2.0), em `simulations/`; as fontes do artigo e as figuras, em `article/`.
 
 - `orex_bennu_vectors.csv`, `orex_real.py` e `orex_kepler3.py`: validação com a trajetória real da OSIRIS-REx (seção 5.6).
 - `sim_bodies.py`, `psyche_j2.py`, `psyche_spiral.py`, `psyche_time.py`, `psyche_roop.py` e `psyche_roop2.py`: Bennu e Psyche com campo de grau 2 em rotação, espiral, linha do tempo e ROOP integrado nas três transferências (seções 5.4, 5.5, 5.7 e 5.8).
