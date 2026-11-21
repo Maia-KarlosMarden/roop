@@ -1,0 +1,11 @@
+# min_r_km = minimum radius sampled hourly from the true trajectory; B1->D, variant ROOP_J2, 25 days
+# with damping (E_DAMP=0.04)
+{"inc": 150.0, "seed": 0, "min_r_km": 185.8, "t_min_d": 6.25, "arrive": 6.188194444444444, "gm_err": -0.28}
+{"inc": 150.0, "seed": 1, "min_r_km": 182.6, "t_min_d": 13.71, "arrive": 13.677777777777777, "gm_err": -0.32}
+{"inc": 90.0, "seed": 0, "min_r_km": 243.8, "t_min_d": 5.38, "arrive": null, "gm_err": -0.01}
+{"inc": 90.0, "seed": 1, "min_r_km": 236.1, "t_min_d": 24.92, "arrive": null, "gm_err": 0.0}
+# without damping (E_DAMP=9)
+{"inc": 150.0, "seed": 0, "min_r_km": 178.1, "t_min_d": 3.5, "arrive": 3.354861111111111, "gm_err": -0.01}
+{"inc": 90.0, "seed": 0, "min_r_km": 122.7, "t_min_d": 22.04, "arrive": 3.0631944444444446, "gm_err": -0.79}
+{"inc": 90.0, "seed": 1, "min_r_km": 99.3, "t_min_d": 24.92, "arrive": 3.1465277777777776, "gm_err": -0.33}
+{"inc": 90.0, "seed": 2, "min_r_km": 59.7, "t_min_d": 19.54, "arrive": 3.3652777777777776, "gm_err": 0.78}
