@@ -1,0 +1,1 @@
+{"ctrl": "ROOP_STAR", "seed": 1, "days": 60.0, "dv": 6.27, "dv_drag": 3.456, "de_initial": 0.000739, "dv_e_lower": 2.842, "nburn": 144, "ground_events": 0, "a_rms": 40.5, "a_maxabs": 119.8, "de_rms_steady": 5.5e-06, "de_final": 9.8e-06, "dv_steady_per_yr": 22.46, "drag_steady_per_yr": 22.46, "dv_first20": 3.81, "plan_days": 7.0, "e_box": 0.0003}

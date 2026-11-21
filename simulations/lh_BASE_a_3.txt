@@ -1,0 +1,1 @@
+{"ctrl": "BASE_a", "dv": 1.116, "dv_drag": 1.165, "nfire": 93, "a_err_final": -88.4, "a_err_rms": 82.2, "e_initial": 0.000137, "e_final": 0.000127, "e_mean_last5d": 0.000131, "seed": 3, "e0": 0.001}

@@ -1,0 +1,1 @@
+{"ctrl": "ROOP_star", "dv": 1.23, "dv_drag": 1.25, "nfire": 41, "a_err_final": -45.4, "a_err_rms": 41.4, "e_initial": 0.004127, "e_final": 0.003725, "e_mean_last5d": 0.003793, "e0": 0.005}

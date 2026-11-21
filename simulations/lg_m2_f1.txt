@@ -1,0 +1,4 @@
+{"kind": "flyby", "srp": 1e-07, "window_h": 6.0, "REL": [-90.117, 5.939], "REL_SRP": [4.987, 14.454], "OD": [4.979, 14.487]}
+{"kind": "flyby", "srp": 1e-07, "window_h": 12.0, "REL": [NaN, NaN], "REL_SRP": [1.19, 3.685], "OD": [1.283, 3.695]}
+{"kind": "flyby", "srp": 1e-07, "window_h": 24.0, "REL": [NaN, NaN], "REL_SRP": [0.066, 0.988], "OD": [0.35, 0.997]}
+{"kind": "flyby", "srp": 1e-07, "window_h": 48.0, "REL": [NaN, NaN], "REL_SRP": [-0.46, 0.305], "OD": [0.112, 0.315]}

@@ -1,0 +1,1 @@
+{"ctrl": "GROUND_NAIVE", "seed": 2, "days": 60.0, "dv": 6.928, "dv_drag": 3.12, "de_initial": 0.000739, "dv_e_lower": 2.842, "nburn": 77, "ground_events": 8, "a_rms": 397.1, "a_maxabs": 1022.4, "de_rms_steady": 0.0001031, "de_final": 9.16e-05, "dv_steady_per_yr": 24.25, "drag_steady_per_yr": 18.85, "dv_first20": 4.272}

@@ -1,0 +1,1 @@
+{"ctrl": "NONE", "dv": 0, "dv_drag": 1.284, "nfire": 0, "a_err_final": -2229.9, "a_err_rms": 1287.8, "e_initial": 0.004127, "e_final": 0.004037, "e_mean_last5d": 0.004054, "e0": 0.005}

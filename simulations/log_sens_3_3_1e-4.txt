@@ -1,0 +1,1 @@
+{"ctrl": "GROUND_SMART", "seed": 3, "days": 60.0, "dv": 6.818, "dv_drag": 3.886, "de_initial": 0.000739, "dv_e_lower": 2.842, "nburn": 75, "ground_events": 19, "a_rms": 265.2, "a_maxabs": 652.6, "de_rms_steady": 5.31e-05, "de_final": 8.77e-05, "dv_steady_per_yr": 23.1, "drag_steady_per_yr": 21.79, "dv_first20": 4.288, "plan_days": 3.0, "e_box": 0.0001}
